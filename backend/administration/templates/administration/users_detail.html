@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html><html><head>
+  <meta charset><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>User Detail</title>
+  <link rel="stylesheet" href="{% static 'administration/style.css' %}">
+</head><body>
+  <main class="user-main">
+    <h1 class="page-title">User Detail</h1>
+    <div class="user-detail-card">
+      <div id="detail"></div>
+      <form id="statusForm" method="post" action="{% url 'administration:update_user_status' user_id %}" class="status-form">
+        {% csrf_token %}
+        <label>Status:
+          <select name="status" id="statusSelect"></select>
+        </label>
+        <button type="submit">Update Status</button>
+      </form>
+      <div id="statusMsg" style="margin-top:1em;"></div>
+    </div>
+  </main>
+  <script>
+    fetch(`/administration/users/{{ user_id }}/view/api/`)
+      .then(r => r.json()).then(u => {
+        let html = '<div class="user-fields">';
+        const select = document.getElementById('statusSelect')
+        const statuses = ['PENDING','VERIFIED','REJECTED','BANNED']
+        statuses.forEach(s => {
+          const opt = document.createElement('option')
+          opt.value = s
+          opt.text = s
+          if (u.status === s) opt.selected = true
+          select.appendChild(opt)
+        })
+        const fieldMap = {
+          accountqr: 'Account QR',
+          profile_photo: 'Profile Photo',
+          live_photo: 'Live Photo',
+          cnic_front_image: 'CNIC Front',
+          cnic_back_image: 'CNIC Back',
+          driving_license_front: 'License Front',
+          driving_license_back: 'License Back',
+        }
+        for (let [k, v] of Object.entries(u)) {
+          const label = fieldMap[k] || k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+          if (v && typeof v === 'string' && v.startsWith('data:image')) {
+            html += `<div class='user-img-field'><strong>${label}:</strong><br><img src="${v}" class="user-img"></div>`
+          } else {
+            html += `<div class='user-text-field'><strong>${label}:</strong> ${v ?? ''}</div>`
+          }
+        }
+        html += '</div>';
+        document.getElementById('detail').innerHTML = html
+      })
+
+    // AJAX for status update
+    document.getElementById('statusForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const csrfToken = formData.get('csrfmiddlewaretoken');
+      const status = formData.get('status');
+      try {
+        const resp = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'X-CSRFToken': csrfToken },
+          body: formData
+        });
+        if (resp.redirected) {
+          window.location.href = resp.url;
+          return;
+        }
+        if (resp.ok) {
+          document.getElementById('statusMsg').innerText = 'Status updated successfully!';
+        } else {
+          document.getElementById('statusMsg').innerText = 'Failed to update status.';
+        }
+      } catch (err) {
+        document.getElementById('statusMsg').innerText = 'Error updating status.';
+      }
+    });
+  </script>
+</body></html>

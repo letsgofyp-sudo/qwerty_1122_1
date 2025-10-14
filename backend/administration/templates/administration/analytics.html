@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset><meta name="viewport"><title>Analytics</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+</head><body><aside>…</aside><main>
+  <h2>Analytics & Reports</h2>
+  <div class="filters">
+    <input type="date" id="from"><input type="date" id="to">
+    <button onclick="exportCSV()">Export CSV</button>
+  </div>
+  <canvas id="deepChart"></canvas>
+</main>
+<script>
+new Chart(document.getElementById('deepChart'), {
+  type:'bar',
+  data:{labels:['Mon','Tue','Wed','Thu','Fri'],datasets:[{label:'Rides',data:[100,150,120,170,200],backgroundColor:'#3498db'}]},
+  options:{title:{display:true,text:'Rides per Day'}}
+});
+function exportCSV(){ alert('CSV Exported'); }
+</script>
+</body></html>

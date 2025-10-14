@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="{% static 'administration/style.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>RideShare Admin</h1>
+  </header>
+  <aside class="sidebar">
+    <nav>
+      <a href="#">Overview</a>
+      <a href="{% url 'administration:user_list' %}">Users</a>
+      <a href="#">Rides</a>
+      <a href="#">Disputes</a>
+      <a href="#">Settings</a>
+    </nav>
+  </aside>
+  <main>
+    <!-- KPI Cards -->
+    <section class="cards">
+      <div class="card">
+        <h3>Active Users</h3>
+        <p id="kpi-active-users">—</p>
+      </div>
+      <div class="card">
+        <h3>Rides Today</h3>
+        <p id="kpi-rides-today">—</p>
+      </div>
+      <div class="card">
+        <h3>Cancellations</h3>
+        <p id="kpi-cancellations">—</p>
+      </div>
+      <div class="card">
+        <h3>Avg. Wait Time</h3>
+        <p id="kpi-wait-time">—</p>
+      </div>
+      <div class="card">
+        <h3>Completed Trips</h3>
+        <p id="kpi-completed-trips">—</p>
+      </div>
+      <div class="card">
+        <h3>Flagged Incidents</h3>
+        <p id="kpi-flagged">—</p>
+      </div>
+    </section>
+
+    <!-- Analytics Charts -->
+    <section class="charts">
+      <div class="chart-container">
+        <canvas id="tsRidesChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="ridesByHourHeatmap"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="userGrowthChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="cancellationDoughnut"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="waitVsCompleted"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="{% static 'administration/index.js' %}"></script>
+</body>
+</html>

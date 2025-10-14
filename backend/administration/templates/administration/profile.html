@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport"><title>User Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head><body><aside>…</aside><main>
+  <header><img src="avatar.png" class="avatar"><h2>Alice Smith</h2></header>
+  <nav class="tabs">
+    <button onclick="showTab('info')">Profile</button>
+    <button onclick="showTab('activity')">Activity</button>
+    <button onclick="showTab('settings')">Settings</button>
+  </nav>
+  <section id="info"><h3>Profile Info</h3><p>Email: alice@example.com</p><p>Role: Rider</p></section>
+  <section id="activity" style="display:none"><h3>Recent Activity</h3><ul><li>Logged in 2 hrs ago</li><li>Booked ride yesterday</li></ul></section>
+  <section id="settings" style="display:none"><h3>Settings</h3><label><input type="checkbox" checked> Email notifications</label></section>
+</main>
+<script>
+function showTab(id){
+  ['info','activity','settings'].forEach(s=>document.getElementById(s).style.display = (s===id?'block':'none'));
+}
+</script></body>
+</html>

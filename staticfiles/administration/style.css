@@ -1,0 +1,97 @@
+/* User List Table */
+.user-main { max-width:900px; margin:40px auto; background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,0.08); padding:32px 24px; }
+.page-title { font-size:2rem; color:#2c3e50; margin-bottom:24px; text-align:center; }
+.table-container { overflow-x:auto; }
+.styled-table {
+  width:100%; border-collapse:collapse; margin-bottom:24px;
+  background:#f9f9f9;
+  border-radius:8px; overflow:hidden;
+  box-shadow:0 1px 4px rgba(0,0,0,0.06);
+}
+.styled-table th, .styled-table td {
+  padding:12px 16px; text-align:left;
+}
+.styled-table th {
+  background:#34495e; color:#fff; font-weight:500;
+}
+.styled-table tr:nth-child(even) { background:#f4f6f8; }
+.styled-table tr:hover { background:#e1e7ef; }
+
+/* User Detail Card */
+.user-detail-card {
+  background:#f9f9f9; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,0.07);
+  padding:32px 24px; margin:0 auto; max-width:600px;
+}
+.user-fields { display:flex; flex-wrap:wrap; gap:18px; }
+.user-text-field { flex:1 1 220px; background:#fff; border-radius:6px; padding:10px 14px; box-shadow:0 1px 2px rgba(0,0,0,0.03); }
+.user-img-field { flex:1 1 220px; text-align:center; background:#fff; border-radius:6px; padding:10px 14px; box-shadow:0 1px 2px rgba(0,0,0,0.03); }
+.user-img { max-width:180px; border-radius:6px; margin-top:6px; }
+.status-form { margin-top:24px; display:flex; gap:12px; align-items:center; }
+.status-form label { font-weight:500; }
+.status-form select { padding:6px 10px; border-radius:4px; border:1px solid #bbb; }
+.status-form button { padding:7px 18px; background:#2980b9; color:#fff; border:none; border-radius:4px; cursor:pointer; transition:background .2s; }
+.status-form button:hover { background:#1c5d8c; }
+
+/* User Edit Form */
+.user-edit-form { max-width:600px; margin:0 auto; background:#f9f9f9; border-radius:10px; box-shadow:0 1px 6px rgba(0,0,0,0.07); padding:32px 24px; }
+.form-row { display:flex; align-items:center; margin-bottom:18px; gap:16px; }
+.form-row label { flex:0 0 160px; font-weight:500; color:#34495e; }
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="number"],
+.form-row select {
+  flex:1 1 220px; padding:8px 12px; border-radius:4px; border:1px solid #bbb; font-size:1rem;
+}
+.form-row input[type="file"] { flex:1 1 220px; }
+.form-row img { margin-left:10px; max-width:120px; border-radius:6px; border:1px solid #ddd; }
+.form-row button { padding:10px 28px; background:#27ae60; color:#fff; border:none; border-radius:4px; font-size:1rem; cursor:pointer; transition:background .2s; }
+.form-row button:hover { background:#219150; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { display:flex; font-family:Arial,sans-serif; min-height:100vh; }
+header {
+  position:fixed; top:0; left:0; right:0; height:60px;
+  background:#2c3e50; color:#fff; display:flex;
+  align-items:center; padding:0 20px; z-index:100;
+}
+.sidebar {
+  width:220px; background:#34495e; padding-top:80px;
+  position:fixed; top:0; bottom:0; left:0;
+}
+.sidebar nav a {
+  display:block; color:#ecf0f1; padding:12px 20px;
+  text-decoration:none; transition:background .2s;
+}
+.sidebar nav a:hover { background:#2c3e50; }
+main {
+  margin-top:60px; margin-left:220px; padding:20px;
+  flex:1; background:#f4f6f8; overflow-y:auto;
+}
+/* KPI cards */
+.cards {
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+  gap:20px;
+}
+.card {
+  background:#fff; padding:15px; border-radius:6px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center;
+}
+.card h3 { font-size:1rem; color:#333; margin-bottom:8px; }
+.card p { font-size:1.5rem; font-weight:700; color:#2980b9; }
+/* Charts */
+.charts {
+  margin-top:30px;
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+  gap:25px;
+}
+.chart-container {
+  background:#fff; padding:15px; border-radius:6px;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+canvas {
+  width:100% !important; height:240px !important;
+}
+/* Responsive */
+@media (max-width:800px) {
+  .sidebar { display:none; }
+  main { margin-left:0; }
+}
