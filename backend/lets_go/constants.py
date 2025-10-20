@@ -1,1 +1,1 @@
-url='http://192.168.100.10:8000'
+url='https://qwerty-1122-1-nl51.vercel.app'
